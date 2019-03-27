@@ -1,7 +1,7 @@
 <?php
 
 //$numcde = $_GET['numCde'];
-$borne = array();
+$tb = array();
 
 include 'connexion.php';
 
@@ -10,6 +10,6 @@ $traitement = $connect ->prepare($req);
     $traitement -> execute();
 
 while($row = $traitement->fetch()){
-            $borne = array($row['nomB'],$row['LAG'], $row['LONG']);
-            array_push($borne);
-} echo $js  = json_encode($borne);
+            $borne = array($row['idB'],$row['nomB'],$row['LAG'], $row['LONG']);
+            array_push($tb,$borne);
+} echo $js  = json_encode($tb);
