@@ -1,7 +1,7 @@
 <?php
 
-    $dsn ="mysql:host=localhost; dbname=camprieucros; charset=UTF8";
-    $user='root';
-    $mdp ='';
+    $dsn ="mysql:host=siomende.fr; dbname=siomende_campderieucros; charset=UTF8";
+    $user='siomende_campderieucros';
+    $mdp ='dbmrcros1948';
 
     $connect = new PDO($dsn,$user,$mdp);
