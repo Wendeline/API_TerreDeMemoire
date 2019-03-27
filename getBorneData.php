@@ -1,7 +1,7 @@
 <?php
 
 $idB = $_GET['idB'];
-$tb = array();
+$borne = array();
 
 include 'connexion.php';
 
@@ -42,37 +42,45 @@ if ($row = $traitement->fetch()){
     if($txt != "" && $img != "" && $info != ""){ //on récup tout
         $contenuT = $txt['contenuT'];
         //recupérer l'image
+        $LienImg = "http://campderieucros.siomende.fr/assets/images/photoGallerie/".$img['titreIG'].".jpg";
         //récupérer le pdf
+        $Lienpdf = "http://campderieucros.siomende.fr/assets/pdf/".$info['titreInfo'].".pdf";
        
-        $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $contenuT /* ,$imgRécup, $pdfRécup */);
+        $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $contenuT ,$LienImg, $Lienpdf);
     }
     else if($txt == "" && $img != "" && $info != ""){ //on récup tout sauf le texte
         //recupérer l'image
+        $LienImg = "http://campderieucros.siomende.fr/assets/images/photoGallerie/".$img['titreIG'].".jpg";
         //récupérer le pdf
+        $Lienpdf = "http://campderieucros.siomende.fr/assets/pdf/".$info['titreInfo'].".pdf";
         
-        $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $txt /* ,$imgRécup, $pdfRécup */);
+        $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $txt ,$LienImg, $Lienpdf);
     }
     else if ($txt != "" && $img == "" && $info != ""){ //on récup tout sauf l'image
         $contenuT = $txt['contenuT'];
         //récupérer le pdf
+        $Lienpdf = "http://campderieucros.siomende.fr/assets/pdf/".$info['titreInfo'].".pdf";
         
-        $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $contenuT, $img /* , $pdfRécup */);
+        $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $contenuT, $img ,$Lienpdf);
     }
     else if($txt != "" && $img != "" && $info == ""){ //on récup tout sauf l'info
         $contenuT = $txt['contenuT'];
         //récupérer l'image
+        $LienImg = "http://campderieucros.siomende.fr/assets/images/photoGallerie/".$img['titreIG'].".jpg";
         
-        $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $contenuT /* ,$imgRécup */, $info);
+        $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $contenuT ,$LienImg, $info);
     }
     else if($txt == "" && $img == "" && $info != ""){ //on récup que l'info
         //récupérer le pdf
+        $Lienpdf = "http://campderieucros.siomende.fr/assets/pdf/".$info['titreInfo'].".pdf";
         
-        $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $txt, $img /* , $pdfRécup */);
+        $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $txt, $img ,$Lienpdf);
     }
     else if ($txt == "" && $img != "" && $info == ""){ //on récup que l'image
         //récupérer l'image
+        $LienImg = "http://campderieucros.siomende.fr/assets/images/photoGallerie/".$img['titreIG'].".jpg";
         
-        $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $txt /* ,$imgRécup */, $info);
+        $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $txt ,$LienImg, $info);
     }
     else if($txt != "" && $img == "" && $info == ""){ //on récup que le texte
         $contenuT = $txt['contenuT'];
@@ -83,8 +91,7 @@ if ($row = $traitement->fetch()){
         $borne = array($row['idB'], $row['nomB'],$row['LAG'],$row['LONG'], $txt , $img , $info);
     }
         
-        array_push($tb,$borne);
-        echo $js  = json_encode($tb);
+        echo $js  = json_encode($borne);
 }else{
     echo 'erreur';
 }
